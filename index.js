@@ -1,4 +1,4 @@
-const {SVG} = require('./lib/generageSvg.js');
+const {SVG} = require('./lib/generateSvg.js');
 const {writeFile} = require('fs').promises;
 const inquirer = require('inquirer');
 
@@ -28,7 +28,7 @@ const questions = [
 
 function writeToFile(fileName, data) {
     writeFile(fileName, data)
-    .then(() => console.log("Success! Open logo.svg in the examples file."))
+    .then(() => console.log("Success! Open your .svg in the examples folder."))
     .catch(err => console.log(err))
 };
 
@@ -39,7 +39,7 @@ function init() {
     )
     .then(response => {
         const svg = new SVG(response.shape, response.shapeColor, response.text, response.textColor);
-        writeToFile("./examples/logo.svg", svg.render());
+        writeToFile(`./examples/${response.text}.svg`, svg.render());
     })
 };
 
